@@ -134,11 +134,11 @@ func PingClientCall(serverAddr, cacert string, n int, payload string, delay time
 		t1b := res1.Ts
 		res2, err := cli.Ping(context.Background(), msg)
 		t3a := time.Now().UnixNano()
-		t2b := res2.Ts
 		if err != nil {
 			log.Errf("grpc error from Ping2 iter %d: %v", i, err)
 			return -1, err
 		}
+		t2b := res2.Ts
 		rt1 := t2a - t1a
 		rttHistogram.Record(float64(rt1) / 1000.)
 		rt2 := t3a - t2a
